@@ -3,6 +3,8 @@ import java.awt.Color;
 import java.awt.Label;
 import java.awt.Rectangle;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /*
@@ -31,21 +33,27 @@ public class ArrayEstatico extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         lbl1 = new javax.swing.JLabel();
         lbl2 = new javax.swing.JLabel();
         TXT1 = new javax.swing.JTextField();
         btn1ver = new javax.swing.JButton();
         lbl3 = new javax.swing.JLabel();
         TXT2 = new javax.swing.JTextField();
-        btnVerDInamico = new javax.swing.JButton();
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 102));
 
-        lbl1.setText("ARRAYS ESTATICOS");
+        lbl1.setBackground(new java.awt.Color(255, 255, 0));
+        lbl1.setFont(new java.awt.Font("Showcard Gothic", 0, 24)); // NOI18N
+        lbl1.setForeground(new java.awt.Color(255, 51, 51));
+        lbl1.setText("ARRAYS ");
 
         lbl2.setText("Ingrese el tamaño:");
 
-        btn1ver.setText("Ver");
+        btn1ver.setText("Ver Estatico");
         btn1ver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn1verActionPerformed(evt);
@@ -54,24 +62,14 @@ public class ArrayEstatico extends javax.swing.JFrame {
 
         lbl3.setText("Ingrese una palabra:");
 
-        btnVerDInamico.setText("DINAMICO");
-        btnVerDInamico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerDInamicoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(120, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbl3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -81,11 +79,12 @@ public class ArrayEstatico extends javax.swing.JFrame {
                             .addComponent(TXT1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(30, 30, 30))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
                         .addComponent(btn1ver)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnVerDInamico)
-                        .addGap(18, 18, 18))))
+                        .addGap(22, 22, 22))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(168, 168, 168)
+                .addComponent(lbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 207, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,19 +93,16 @@ public class ArrayEstatico extends javax.swing.JFrame {
                 .addComponent(lbl1)
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbl2)
-                        .addGap(18, 18, 18)
-                        .addComponent(lbl3))
+                    .addComponent(lbl2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(TXT1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(TXT2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TXT2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl3))))
                 .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn1ver)
-                    .addComponent(btnVerDInamico))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addComponent(btn1ver)
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
         pack();
@@ -117,8 +113,13 @@ JPanel jpanel = (JPanel) this.getContentPane();
         // RECUPERANDO LOS VALORES DE LOS OBJETOS LOGICOS
         int tamanio = Integer.parseInt(TXT1.getText());
         String palabra = TXT2.getText();
+        
+        // Validar la longitud de la palabra
+    if (palabra.length() > tamanio) {
+        JOptionPane.showMessageDialog(this, "La longitud de la palabra es mayor que el tamaño especificado", "Error", JOptionPane.ERROR_MESSAGE);
+        return; // Salir del método si hay un error
+    }
         //DECLARANDO UN ARRAY ESTATICO DIMENSIONADO POR EL USUARIO
-
         jpanel.setLayout(null);
         jpanel.setBackground(Color.LIGHT_GRAY);
         Label[] listaPalabras = new Label[tamanio];
@@ -131,15 +132,13 @@ JPanel jpanel = (JPanel) this.getContentPane();
             //listaPalabras [i].setText(palabra);
             jpanel.add(listaPalabras[i], null); // AGREGANDOLE AL PANEL 
         }
-
+        
+        
+ // Limpiar campos de texto después de ejecutar
+ TXT1.setText("");
+ TXT2.setText("");
     }//GEN-LAST:event_btn1verActionPerformed
 
-    private void btnVerDInamicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDInamicoActionPerformed
-        // TODO add your handling code here:
-        
-        
-        
-    }//GEN-LAST:event_btnVerDInamicoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,7 +180,7 @@ JPanel jpanel = (JPanel) this.getContentPane();
     private javax.swing.JTextField TXT1;
     private javax.swing.JTextField TXT2;
     private javax.swing.JButton btn1ver;
-    private javax.swing.JButton btnVerDInamico;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbl1;
     private javax.swing.JLabel lbl2;
     private javax.swing.JLabel lbl3;
